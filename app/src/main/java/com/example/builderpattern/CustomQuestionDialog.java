@@ -1,8 +1,5 @@
 package com.example.builderpattern;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +10,22 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.builderpattern.databinding.CustomDialogLayoutBinding;
+import com.example.builderpattern.databinding.CustomQuestionDialogLayoutBinding;
 
-public class CustomDialog extends DialogFragment {
+public class CustomQuestionDialog extends DialogFragment {
+
 
     private String positiveButtonText, negativeButtonText, titleText, descriptionText;
-    private CustomDialogLayoutBinding customDialogLayoutBinding;
-    private DialogButtonClickListener dialogClickListener = null;
+    private CustomQuestionDialogLayoutBinding customDialogLayoutBinding;
+    private CustomQuestionDialog.DialogButtonClickListener dialogClickListener = null;
+
 
     interface DialogButtonClickListener{
         void onPositiveButton();
+        void onNegativeButton();
     };
-    public CustomDialog(String positiveButtonText, String negativeButtonText, String titleText, String descriptionText){
+
+    public CustomQuestionDialog(String positiveButtonText, String negativeButtonText, String titleText, String descriptionText){
 
         this.positiveButtonText = positiveButtonText;
         this.negativeButtonText = negativeButtonText;
@@ -35,7 +37,7 @@ public class CustomDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        customDialogLayoutBinding = CustomDialogLayoutBinding.inflate(inflater, container, false);
+        customDialogLayoutBinding = CustomQuestionDialogLayoutBinding.inflate(inflater, container, false);
         return customDialogLayoutBinding.getRoot();
     }
 
@@ -55,6 +57,15 @@ public class CustomDialog extends DialogFragment {
             }
         });
 
+        customDialogLayoutBinding.btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialogClickListener.onNegativeButton();
+
+            }
+        });
+
     }
 
     @Override
@@ -63,8 +74,7 @@ public class CustomDialog extends DialogFragment {
         getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
     }
 
-    public void setListener(DialogButtonClickListener listener){
+    public void setListener(CustomQuestionDialog.DialogButtonClickListener listener){
         dialogClickListener = listener;
     }
-
 }

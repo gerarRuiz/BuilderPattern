@@ -18,20 +18,38 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         binding.buttonLaunchDIalog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                CustomDialog customDialog = new CustomDialog("Buscar","", "Aviso", "Buscar miembro");
+                /*CustomDialog customDialog = new CustomDialog("Buscar","", "Aviso", "Buscar miembro");
                 customDialog.setListener(new CustomDialog.DialogButtonClickListener() {
                     @Override
                     public void onPositiveButton() {
                         Toast.makeText(MainActivity.this, "Funciona", Toast.LENGTH_SHORT).show();
                     }
                 });
-                customDialog.show(getSupportFragmentManager(), "Dialog1");
+                customDialog.show(getSupportFragmentManager(), "Dialog1");*/
+
+                final CustomQuestionDialog customQuestionDialog = new CustomQuestionDialog("Buscar", "Cancelar", "Aviso", "Exitoso");
+                customQuestionDialog.setListener(new CustomQuestionDialog.DialogButtonClickListener() {
+                    @Override
+                    public void onPositiveButton() {
+                        Toast.makeText(MainActivity.this, "Funciono", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onNegativeButton() {
+
+                        customQuestionDialog.dismiss();
+                    }
+                });
+
+                customQuestionDialog.show(getSupportFragmentManager(), "Dialog1");
 
             }
         });
+
     }
 }
