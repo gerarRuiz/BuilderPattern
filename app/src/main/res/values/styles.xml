@@ -15,4 +15,18 @@
 
     </style>
 
+    <style name="DialogThemeUpDown">
+
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom</item>
+
+    </style>
+
+    <style name="DialogThemeFading">
+
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+
+    </style>
+
 </resources>

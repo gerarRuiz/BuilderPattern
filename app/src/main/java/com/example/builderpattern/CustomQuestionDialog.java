@@ -71,7 +71,7 @@ public class CustomQuestionDialog extends DialogFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
+        getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogThemeUpDown;
     }
 
     public void setListener(CustomQuestionDialog.DialogButtonClickListener listener){
